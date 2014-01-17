@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Illallangi.NinjectPowershell</id>
+    <version>$version$</version>
+    <title>Ninject Cmdlet Module</title>
+    <authors>Illallangi Enterprises</authors>
+    <owners>Illallangi Enterprises</owners>
+    <projectUrl>http://illallangi.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A Cmdlet that includes a Ninject hook</description>
+    <copyright>Copyright 2014</copyright>
+    <tags>Ninject</tags>
+    <dependencies>
+      <dependency id="Ninject" version="3.0.1.10" />
+    </dependencies>
+  </metadata>
+</package>
