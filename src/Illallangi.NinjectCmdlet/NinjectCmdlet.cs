@@ -10,7 +10,7 @@ namespace Illallangi
     {
         #region Fields
 
-        private const string Null = @"Null";
+        protected const string Null = @"Null";
 
         private INinjectModule currentModule1;
 
