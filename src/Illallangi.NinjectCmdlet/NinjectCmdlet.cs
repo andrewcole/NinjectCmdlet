@@ -29,7 +29,7 @@ namespace Illallangi
         protected NinjectCmdlet(INinjectSettings ninjectSettings = null, Func<Tmodule> moduleConstructor = null)
         {
             this.currentNinjectSettings = ninjectSettings ?? new NinjectSettings();
-            this.currentModuleConstructor = moduleConstructor;
+            this.currentModuleConstructor = moduleConstructor ?? (() => new Tmodule());
         }
 
         #endregion
@@ -56,10 +56,7 @@ namespace Illallangi
         {
             get
             {
-                return this.currentModule ?? 
-                    (this.currentModule = (null == this.ModuleConstructor) ? 
-                                            this.ModuleConstructor() : 
-                                            new Tmodule());
+                return this.currentModule ?? (this.currentModule = this.ModuleConstructor());
             }
         }
 
