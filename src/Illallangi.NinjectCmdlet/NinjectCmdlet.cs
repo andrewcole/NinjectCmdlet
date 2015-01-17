@@ -16,8 +16,6 @@ namespace Illallangi
 
         private readonly INinjectSettings currentNinjectSettings;
 
-        private readonly Func<Tmodule> currentModuleConstructor;
-
         private INinjectModule currentModule;
 
         private StandardKernel currentKernel;
@@ -26,10 +24,9 @@ namespace Illallangi
 
         #region Constructor
 
-        protected NinjectCmdlet(INinjectSettings ninjectSettings = null, Func<Tmodule> moduleConstructor = null)
+        protected NinjectCmdlet(INinjectSettings ninjectSettings = null)
         {
             this.currentNinjectSettings = ninjectSettings ?? new NinjectSettings();
-            this.currentModuleConstructor = moduleConstructor ?? (() => new Tmodule());
         }
 
         #endregion
@@ -44,19 +41,11 @@ namespace Illallangi
             }
         }
 
-        private Func<Tmodule> ModuleConstructor
-        {
-            get
-            {
-                return this.currentModuleConstructor;
-            }
-        }
-
         private INinjectModule Module
         {
             get
             {
-                return this.currentModule ?? (this.currentModule = this.ModuleConstructor());
+                return this.currentModule ?? (this.currentModule = this.GetModule());
             }
         }
 
@@ -76,6 +65,11 @@ namespace Illallangi
         protected T Get<T>()
         {
             return this.Kernel.Get<T>();
+        }
+
+        protected virtual INinjectModule GetModule()
+        {
+            return new Tmodule();
         }
 
         #endregion
